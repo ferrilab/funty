@@ -1261,33 +1261,41 @@ pub trait AtMost128: IsNumber {}
 
 macro_rules! func {
 	( $name:ident ( self $(, $arg:ident : $t:ty)* ) $( -> $ret:ty )? ) => {
+		#[inline(always)]
 		fn $name ( self $(, $arg : $t )* ) $( -> $ret )? { <Self>:: $name ( self $(, $arg )* )}
 	};
 	( $name:ident ( &self $(, $arg:ident : $t:ty)* ) $( -> $ret:ty )? ) => {
+		#[inline(always)]
 		fn $name ( &self $(, $arg : $t )* ) $( -> $ret )? { <Self>:: $name ( &self $(, $arg )* )}
 	};
 	( $name:ident ( &mut self $(, $arg:ident : $t:ty)* ) $( -> $ret:ty )? ) => {
+		#[inline(always)]
 		fn $name ( &mut self $(, $arg : $t )* ) $( -> $ret )? { <Self>:: $name ( &mut self $(, $arg )* )}
 	};
 	( $name:ident ( $($arg:ident : $t:ty),* ) $( -> $ret:ty )? ) => {
+		#[inline(always)]
 		fn $name ( $($arg : $t ),* ) $( -> $ret )? { <Self>:: $name ( $( $arg ),* )}
 	};
 }
 
 macro_rules! stdfunc {
 	( $name:ident ( self $(, $arg:ident : $t:ty)* ) $( -> $ret:ty )? ) => {
+		#[inline(always)]
 		#[cfg(feature = "std")]
 		fn $name ( self $(, $arg : $t )* ) $( -> $ret )? { <Self>:: $name ( self $(, $arg )* )}
 	};
 	( $name:ident ( &self $(, $arg:ident : $t:ty)* ) $( -> $ret:ty )? ) => {
+		#[inline(always)]
 		#[cfg(feature = "std")]
 		fn $name ( &self $(, $arg : $t )* ) $( -> $ret )? { <Self>:: $name ( &self $(, $arg )* )}
 	};
 	( $name:ident ( &mut self $(, $arg:ident : $t:ty)* ) $( -> $ret:ty )? ) => {
+		#[inline(always)]
 		#[cfg(feature = "std")]
 		fn $name ( &mut self $(, $arg : $t )* ) $( -> $ret )? { <Self>:: $name ( &mut self $(, $arg )* )}
 	};
 	( $name:ident ( $($arg:ident : $t:ty),* ) $( -> $ret:ty )? ) => {
+		#[inline(always)]
 		#[cfg(feature = "std")]
 		fn $name ( $($arg : $t ),* ) $( -> $ret )? { <Self>:: $name ( $( $arg ),* )}
 	};
